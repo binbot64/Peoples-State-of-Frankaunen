@@ -15,22 +15,37 @@ body {
 
 header {
     background: linear-gradient(90deg, #7a0000, #111);
-    padding: 20px;
+    padding: 30px 20px;
     text-align: center;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5em;
+    font-size: 2.6em;
     color: gold;
+}
+
+header p {
+    margin-top: 8px;
+    font-size: 1.1em;
+}
+
+.flag {
+    max-width: 320px;
+    width: 100%;
+    margin: 25px auto 10px auto;
+    display: block;
+    border: 4px solid gold;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.5);
 }
 
 nav {
     background-color: #111;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 10px;
+    gap: 25px;
+    padding: 12px;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -44,35 +59,26 @@ nav a:hover {
 }
 
 section {
-    padding: 40px;
-    max-width: 1000px;
+    padding: 40px 20px;
+    max-width: 1100px;
     margin: auto;
 }
 
 h2 {
     color: gold;
     border-bottom: 2px solid #7a0000;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
 }
 
 .card {
     background-color: #1a1a1a;
-    padding: 20px;
-    margin: 20px 0;
-    border-left: 4px solid #7a0000;
+    padding: 22px;
+    margin: 25px 0;
+    border-left: 5px solid #7a0000;
 }
 
-button {
-    background-color: #7a0000;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background-color: #a00000;
+ul {
+    margin-left: 20px;
 }
 
 footer {
@@ -80,6 +86,7 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 0.9em;
+    color: #aaa;
 }
 </style>
 </head>
@@ -89,6 +96,7 @@ footer {
 <header>
     <h1>People's State of Frankaunen</h1>
     <p>Unity Through Collective Strength</p>
+    <img src="flag.png" alt="Flag of Frankaunen" class="flag">
 </header>
 
 <nav>
@@ -104,7 +112,7 @@ footer {
     <div class="card">
         <p><strong>Territory:</strong> Sovereign Digital State</p>
         <p><strong>Government:</strong> Communist Dictatorship</p>
-        <p><strong>Leader:</strong> Supreme Comrade</p>
+        <p><strong>Head of State:</strong> Supreme Comrade</p>
         <p><strong>Economy:</strong> Internal Barter System with Labor Credits</p>
     </div>
 </section>
@@ -131,20 +139,23 @@ footer {
     <h2>Labor Credit System</h2>
     <div class="card">
         <h3>Labor Credits (LC)</h3>
-        <p>Labor Credits are earned through contribution:</p>
+        <p>Labor Credits are earned through contribution to the state:</p>
         <ul>
             <li>Programming & Infrastructure</li>
-            <li>Art & Design</li>
-            <li>Writing & Doctrine</li>
+            <li>Art, Flags, & Propaganda</li>
+            <li>Writing, Doctrine, & Law</li>
             <li>Moderation & Security</li>
             <li>Diplomacy & Recruitment</li>
         </ul>
-        <p>Credits grant rank, authority, and trade priority.</p>
+        <p>
+        Labor Credits grant rank, authority, and trade priority within the collective.
+        </p>
     </div>
 </section>
 
 <section id="ranks">
     <h2>Rank Structure</h2>
+
     <div class="card">
         <h3>Tier I – Workers</h3>
         <p>Citizen Worker (0–50 LC)</p>
@@ -165,35 +176,34 @@ footer {
 
     <div class="card">
         <h3>Tier IV – Supreme Authority</h3>
-        <p>Supreme Comrade (Absolute Authority)</p>
+        <p>Supreme Comrade – Absolute Authority</p>
     </div>
 </section>
 
 <section id="foreign">
     <h2>Foreign Policy</h2>
+
     <div class="card">
         <h3>Allied Collectives</h3>
-        <p>Recognized digital states aligned with Frankaunen.</p>
+        <p>
+        Digital states and organizations aligned with the ideology and objectives
+        of Frankaunen.
+        </p>
     </div>
 
     <div class="card">
         <h3>Neutral Entities</h3>
-        <p>Observed but not formally aligned.</p>
+        <p>
+        Observed entities with limited diplomatic engagement.
+        </p>
     </div>
 
     <div class="card">
         <h3>Hostile Entities</h3>
-        <p>Opposition to the collective order results in severed relations.</p>
-    </div>
-</section>
-
-<section>
-    <h2>Citizen Application</h2>
-    <div class="card">
-        <p>To join Frankaunen, pledge loyalty to the collective and contribute labor.</p>
-        <button onclick="alert('Application system coming soon.')">
-            Apply for Citizenship
-        </button>
+        <p>
+        Groups or states opposing the collective order are denied recognition and
+        access.
+        </p>
     </div>
 </section>
 
