@@ -58,13 +58,15 @@ function displayLedger() {
     table.innerHTML = `
     <tr>
         <th>Name</th>
-        <th>Labor Credits</th>
+        <th>Credits</th>
+        <th>Rank</th>
     </tr>`;
 
     for (let name in ledger) {
         let row = table.insertRow();
         row.insertCell(0).textContent = name;
         row.insertCell(1).textContent = ledger[name];
+        row.insertCell(2).textContent = getRank(ledger[name]);
     }
 }
 
@@ -95,4 +97,30 @@ function checkAdmin() {
 function logout() {
     sessionStorage.removeItem("isAdmin");
     window.location.href = "index.html";
+}
+
+function getRank(credits) {
+    if (credits >= 800) return "Vanguard";
+    if (credits >= 400) return "Sector Overseer";
+    if (credits >= 150) return "Collective Organizer";
+    if (credits >= 50) return "Skilled Worker";
+    return "Citizen Worker";
+}
+
+function exportCSV() {
+    let csv = "Name,Credits,Rank\n";
+    for (let name in ledger) {
+        csv += `${name},${ledger[name]},${getRank(ledger[name])}\n`;
+    }
+
+    let blob = new Blob([csv], { type: "text/csv" });
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "frankaunen_ledger.csv";
+    a.click();
+}
+
+function enterSite() {
+    document.getElementById("introScreen").style.display = "none";
 }
