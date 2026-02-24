@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Control</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkAdmin()">
+
+<header>
+<h1>ADMINISTRATIVE CONTROL PANEL</h1>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<button onclick="logout()">Logout</button>
+</nav>
+
+<section>
+<div class="card">
+<h2>Export Ledger</h2>
+<button onclick="exportCSV()">Download CSV</button>
+</div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
