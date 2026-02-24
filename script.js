@@ -76,7 +76,17 @@ displayLedger();
 
 // --- ADMIN SYSTEM ---
 
-const ADMIN_PASSWORD = "FrankaunenSupreme"; // Change this immediately
+const ADMIN_HASH = "c2VjcmV0MTIz"; // base64 encoded
+
+function login() {
+    const input = btoa(document.getElementById("adminPass").value);
+    if (input === ADMIN_HASH) {
+        sessionStorage.setItem("isAdmin", "true");
+        window.location.href = "admin.html";
+    } else {
+        alert("Access Denied.");
+    }
+}
 
 function login() {
     const input = document.getElementById("adminPass").value;
