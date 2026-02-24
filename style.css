@@ -120,13 +120,14 @@ th {
     align-items: center;
     z-index: 9999;
     text-align: center;
+    transition: opacity 0.5s ease;
 }
 
 #introScreen h1 {
     font-size: 3em;
     margin-bottom: 20px;
-    animation: pulseText 2s infinite alternate;
 }
+
 
 @keyframes pulseText {
     from { opacity: 0.6; }
