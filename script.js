@@ -184,3 +184,19 @@ function exportCSV() {
 displayCitizens();
 displayRequests();
 displayLedger();
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const intro = document.getElementById("introScreen");
+    const button = document.getElementById("enterButton");
+
+    if (button) {
+        button.addEventListener("click", function () {
+            intro.style.opacity = "0";
+            setTimeout(() => {
+                intro.style.display = "none";
+            }, 500);
+        });
+    }
+
+});
