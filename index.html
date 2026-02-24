@@ -1,215 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>People's State of Frankaunen</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #0e0e0e;
-    color: #e0e0e0;
-}
-
-header {
-    background: linear-gradient(90deg, #7a0000, #111);
-    padding: 30px 20px;
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.6em;
-    color: gold;
-}
-
-header p {
-    margin-top: 8px;
-    font-size: 1.1em;
-}
-
-.flag {
-    max-width: 320px;
-    width: 100%;
-    margin: 25px auto 10px auto;
-    display: block;
-    border: 4px solid gold;
-    box-shadow: 0 0 18px rgba(255, 215, 0, 0.5);
-}
-
-nav {
-    background-color: #111;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 12px;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: #e0e0e0;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    color: gold;
-}
-
-section {
-    padding: 40px 20px;
-    max-width: 1100px;
-    margin: auto;
-}
-
-h2 {
-    color: gold;
-    border-bottom: 2px solid #7a0000;
-    padding-bottom: 6px;
-}
-
-.card {
-    background-color: #1a1a1a;
-    padding: 22px;
-    margin: 25px 0;
-    border-left: 5px solid #7a0000;
-}
-
-ul {
-    margin-left: 20px;
-}
-
-footer {
-    background-color: #111;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
-    color: #aaa;
-}
-</style>
+<title>Frankaunen</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-    <h1>People's State of Frankaunen</h1>
-    <p>Unity Through Collective Strength</p>
-    <img src="flag.png" alt="Flag of Frankaunen" class="flag">
+    <h1>PEOPLE'S STATE OF FRANKAUNEN</h1>
+    <img src="flag.png" class="flag">
 </header>
 
 <nav>
-    <a href="#about">About</a>
-    <a href="#declaration">Founding Declaration</a>
-    <a href="#economy">Labor & Economy</a>
-    <a href="#ranks">Rank System</a>
-    <a href="#foreign">Foreign Policy</a>
+    <a href="index.html">Home</a>
+    <a href="economy.html">Labor System</a>
+    <a href="citizens.html">Citizens</a>
+    <a href="foreign.html">Foreign Policy</a>
 </nav>
 
-<section id="about">
-    <h2>About Frankaunen</h2>
+<section>
     <div class="card">
-        <p><strong>Territory:</strong> Sovereign Digital State</p>
-        <p><strong>Government:</strong> Communist Dictatorship</p>
-        <p><strong>Head of State:</strong> Supreme Comrade</p>
-        <p><strong>Economy:</strong> Internal Barter System with Labor Credits</p>
+        <h2>Founding Declaration</h2>
+        <p>
+        Frankaunen exists as a sovereign digital collective.
+        All labor serves the state. Unity is strength.
+        Discipline ensures prosperity.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>State Structure</h2>
+        <p>Government Type: Communist Dictatorship</p>
+        <p>Supreme Authority: Supreme Comrade</p>
+        <p>Economy: Labor Credit Barter System</p>
     </div>
 </section>
 
-<section id="declaration">
-    <h2>Founding Declaration</h2>
-    <div class="card">
-        <p>
-        We, the founders and workers of Frankaunen, hereby proclaim the establishment
-        of the People’s State of Frankaunen as a sovereign digital nation.
-        </p>
-        <p>
-        All labor serves the collective. All authority flows from the state.
-        Individual contribution strengthens the whole.
-        </p>
-        <p>
-        Our territory is digital. Our strength is unity. Our future is forged through
-        discipline and centralized will.
-        </p>
-    </div>
-</section>
-
-<section id="economy">
-    <h2>Labor Credit System</h2>
-    <div class="card">
-        <h3>Labor Credits (LC)</h3>
-        <p>Labor Credits are earned through contribution to the state:</p>
-        <ul>
-            <li>Programming & Infrastructure</li>
-            <li>Art, Flags, & Propaganda</li>
-            <li>Writing, Doctrine, & Law</li>
-            <li>Moderation & Security</li>
-            <li>Diplomacy & Recruitment</li>
-        </ul>
-        <p>
-        Labor Credits grant rank, authority, and trade priority within the collective.
-        </p>
-    </div>
-</section>
-
-<section id="ranks">
-    <h2>Rank Structure</h2>
-
-    <div class="card">
-        <h3>Tier I – Workers</h3>
-        <p>Citizen Worker (0–50 LC)</p>
-        <p>Skilled Worker (50–150 LC)</p>
-    </div>
-
-    <div class="card">
-        <h3>Tier II – Organizers</h3>
-        <p>Collective Organizer (150–400 LC)</p>
-        <p>Sector Overseer (400–800 LC)</p>
-    </div>
-
-    <div class="card">
-        <h3>Tier III – Vanguard</h3>
-        <p>Party Vanguard (800+ LC)</p>
-        <p>Vanguard Officer (Appointment Only)</p>
-    </div>
-
-    <div class="card">
-        <h3>Tier IV – Supreme Authority</h3>
-        <p>Supreme Comrade – Absolute Authority</p>
-    </div>
-</section>
-
-<section id="foreign">
-    <h2>Foreign Policy</h2>
-
-    <div class="card">
-        <h3>Allied Collectives</h3>
-        <p>
-        Digital states and organizations aligned with the ideology and objectives
-        of Frankaunen.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Neutral Entities</h3>
-        <p>
-        Observed entities with limited diplomatic engagement.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Hostile Entities</h3>
-        <p>
-        Groups or states opposing the collective order are denied recognition and
-        access.
-        </p>
-    </div>
-</section>
-
-<footer>
-    © 2026 People's State of Frankaunen | Digital Sovereign Entity
-</footer>
-
+<script src="script.js"></script>
 </body>
 </html>
