@@ -1,44 +1,118 @@
-// Load stored data
-let ledger = JSON.parse(localStorage.getItem("ledger")) || {};
-let citizens = JSON.parse(localStorage.getItem("citizens")) || [];
+// =============================
+// STATE DATABASE (LocalStorage)
+// =============================
 
-// Save functions
-function saveLedger() {
+let citizens = JSON.parse(localStorage.getItem("citizens")) || [];
+let requests = JSON.parse(localStorage.getItem("requests")) || [];
+let ledger = JSON.parse(localStorage.getItem("ledger")) || {};
+
+function saveAll() {
+    localStorage.setItem("citizens", JSON.stringify(citizens));
+    localStorage.setItem("requests", JSON.stringify(requests));
     localStorage.setItem("ledger", JSON.stringify(ledger));
 }
 
-function saveCitizens() {
-    localStorage.setItem("citizens", JSON.stringify(citizens));
-}
+// =============================
+// ADMIN SYSTEM
+// =============================
 
-// Register citizen
-function registerCitizen() {
-    let name = document.getElementById("newCitizen").value;
-    if (!name) return;
+const ADMIN_HASH = "RnJhbmtBdW5lblN1cHJlbWU="; // base64 for FrankAunenSupreme
 
-    if (!citizens.includes(name)) {
-        citizens.push(name);
-        ledger[name] = 0;
-        saveCitizens();
-        saveLedger();
-        displayCitizens();
-        alert("Citizen Registered.");
+function login() {
+    const input = btoa(document.getElementById("adminPass").value);
+    if (input === ADMIN_HASH) {
+        sessionStorage.setItem("isAdmin", "true");
+        window.location.href = "admin.html";
+    } else {
+        alert("Access Denied");
     }
 }
 
-// Add labor credits
+function checkAdmin() {
+    if (sessionStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "login.html";
+    }
+}
+
+function logout() {
+    sessionStorage.removeItem("isAdmin");
+    window.location.href = "index.html";
+}
+
+// =============================
+// CITIZENSHIP REQUEST SYSTEM
+// =============================
+
+function requestCitizenship() {
+    let name = document.getElementById("requestName").value;
+    if (!name) return alert("Enter name.");
+
+    if (!requests.includes(name) && !citizens.includes(name)) {
+        requests.push(name);
+        saveAll();
+        alert("Request submitted.");
+        displayRequests();
+    }
+}
+
+function approveRequest(name) {
+    citizens.push(name);
+    ledger[name] = 0;
+    requests = requests.filter(r => r !== name);
+    saveAll();
+    displayRequests();
+    displayCitizens();
+    displayLedger();
+}
+
+function denyRequest(name) {
+    requests = requests.filter(r => r !== name);
+    saveAll();
+    displayRequests();
+}
+
+// =============================
+// REMOVE CITIZEN
+// =============================
+
+function removeCitizen(name) {
+    citizens = citizens.filter(c => c !== name);
+    delete ledger[name];
+    saveAll();
+    displayCitizens();
+    displayLedger();
+}
+
+// =============================
+// LABOR CREDIT SYSTEM
+// =============================
+
 function addCredits() {
     let name = document.getElementById("citizenName").value;
     let credits = parseInt(document.getElementById("credits").value);
 
-    if (!ledger[name]) ledger[name] = 0;
-    ledger[name] += credits;
+    if (!citizens.includes(name)) {
+        alert("Citizen does not exist.");
+        return;
+    }
 
-    saveLedger();
+    ledger[name] += credits;
+    saveAll();
     displayLedger();
 }
 
-// Display functions
+function getRank(credits) {
+    if (credits >= 800) return "Vanguard";
+    if (credits >= 400) return "Sector Overseer";
+    if (credits >= 150) return "Collective Organizer";
+    if (credits >= 50) return "Skilled Worker";
+    return "Citizen Worker";
+}
+
+// =============================
+// DISPLAY FUNCTIONS
+// =============================
+
 function displayCitizens() {
     let list = document.getElementById("citizenList");
     if (!list) return;
@@ -46,7 +120,22 @@ function displayCitizens() {
     list.innerHTML = "";
     citizens.forEach(c => {
         let li = document.createElement("li");
-        li.textContent = c;
+        li.innerHTML = `${c} 
+        <button onclick="removeCitizen('${c}')">Remove</button>`;
+        list.appendChild(li);
+    });
+}
+
+function displayRequests() {
+    let list = document.getElementById("requestList");
+    if (!list) return;
+
+    list.innerHTML = "";
+    requests.forEach(r => {
+        let li = document.createElement("li");
+        li.innerHTML = `${r} 
+        <button onclick="approveRequest('${r}')">Approve</button>
+        <button onclick="denyRequest('${r}')">Deny</button>`;
         list.appendChild(li);
     });
 }
@@ -70,52 +159,9 @@ function displayLedger() {
     }
 }
 
-// Auto-load
-displayCitizens();
-displayLedger();
-
-// --- ADMIN SYSTEM ---
-
-const ADMIN_HASH = "c2VjcmV0MTIz"; // base64 encoded
-
-function login() {
-    const input = btoa(document.getElementById("adminPass").value);
-    if (input === ADMIN_HASH) {
-        sessionStorage.setItem("isAdmin", "true");
-        window.location.href = "admin.html";
-    } else {
-        alert("Access Denied.");
-    }
-}
-
-function login() {
-    const input = document.getElementById("adminPass").value;
-    if (input === ADMIN_PASSWORD) {
-        sessionStorage.setItem("isAdmin", "true");
-        window.location.href = "admin.html";
-    } else {
-        alert("Access Denied.");
-    }
-}
-
-function checkAdmin() {
-    if (sessionStorage.getItem("isAdmin") !== "true") {
-        window.location.href = "login.html";
-    }
-}
-
-function logout() {
-    sessionStorage.removeItem("isAdmin");
-    window.location.href = "index.html";
-}
-
-function getRank(credits) {
-    if (credits >= 800) return "Vanguard";
-    if (credits >= 400) return "Sector Overseer";
-    if (credits >= 150) return "Collective Organizer";
-    if (credits >= 50) return "Skilled Worker";
-    return "Citizen Worker";
-}
+// =============================
+// EXPORT CSV
+// =============================
 
 function exportCSV() {
     let csv = "Name,Credits,Rank\n";
@@ -131,6 +177,10 @@ function exportCSV() {
     a.click();
 }
 
-function enterSite() {
-    document.getElementById("introScreen").style.display = "none";
-}
+// =============================
+// AUTO LOAD
+// =============================
+
+displayCitizens();
+displayRequests();
+displayLedger();
